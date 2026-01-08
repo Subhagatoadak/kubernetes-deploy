@@ -1,0 +1,24 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        language_version: python3
+
+  - repo: local
+    hooks:
+      - id: hadolint
+        name: hadolint (Dockerfile lint)
+        entry: hadolint
+        language: system
+        types: [dockerfile]
+        files: ^Dockerfile$
+        require_serial: true
+
+      - id: helm-lint
+        name: helm lint (chart)
+        entry: helm lint helm/fastapi
+        language: system
+        pass_filenames: false
+        files: ^helm/fastapi/
+        require_serial: true

@@ -8,6 +8,12 @@ Small FastAPI backend packaged for Docker and deployable to Kubernetes using Hel
 - Run locally: `uvicorn app.main:app --reload --host 0.0.0.0 --port 8000`
 - Visit `http://localhost:8000/docs` for the interactive API (endpoints: `/`, `/healthz`, `POST /items`).
 
+## Dev tooling (pre-commit)
+- Install tools: `pip install pre-commit` and ensure `hadolint` + `helm` CLIs are installed (macOS: `brew install pre-commit hadolint helm`; Ubuntu: `sudo apt-get install pre-commit hadolint` and install Helm via https://helm.sh/docs/intro/install/).
+- Install hooks: `pre-commit install`
+- Run all hooks manually: `pre-commit run --all-files`
+  - Hooks included: `black` (Python formatting), `hadolint` (Dockerfile lint), `helm lint` (chart validation for `helm/fastapi`).
+
 ## Build and Run with Docker
 ```bash
 # From repo root
